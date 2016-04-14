@@ -31,4 +31,6 @@
 /test-suite/Makefile.in
 /confdefs.h
 /benchmark-suite/Makefile.in
+/benchmark-suite/Makefile
+/benchmark-suite/.deps
 /src/rrb.h
