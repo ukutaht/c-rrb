@@ -20,11 +20,14 @@
 /missing
 /obj
 /src/*.a
+/src/*.la
 /src/*.o
+/src/*.lo
 /src/.deps/
 /src/Makefile
 /src/Makefile.in
 /src/test
+/src/.libs
 /stamp-h1
 /test-suite/.deps
 /test-suite/Makefile
