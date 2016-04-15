@@ -128,7 +128,7 @@ static LeafNode* transient_leaf_node_clone(const LeafNode *leaf, const void *gui
 static RRBSizeTable* ensure_size_table_editable(const RRBSizeTable *table,
                                                 uint32_t len, const void *guid) {
   if (table->guid == guid) {
-    return table;
+    return (RRBSizeTable*) table;
   }
   else {
     return transient_size_table_clone(table, len, guid);
@@ -463,7 +463,7 @@ TransientRRB* transient_rrb_update(TransientRRB *restrict trrb, uint32_t index,
       previous_pointer = &current->child[child_index];
       current = current->child[child_index];
     }
-    
+
     LeafNode *leaf = (LeafNode *) current;
     leaf = ensure_leaf_editable((LeafNode *) leaf, guid);
     *previous_pointer = (InternalNode *) leaf;

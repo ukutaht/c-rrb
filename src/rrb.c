@@ -144,7 +144,7 @@ static TreeNode* slice_left_rec(uint32_t *total_shift, const TreeNode *root,
 static RRB* rrb_head_clone(const RRB *original);
 
 static RRB* push_down_tail(const RRB *restrict rrb, RRB *restrict new_rrb,
-                           const LeafNode *restrict new_tail);
+                           LeafNode *restrict new_tail);
 static void promote_rightmost_leaf(RRB *new_rrb);
 
 
@@ -697,7 +697,7 @@ const RRB* rrb_push(const RRB *restrict rrb, const void *restrict elt) {
 
 
 static RRB* push_down_tail(const RRB *restrict rrb, RRB *restrict new_rrb,
-                           const LeafNode *restrict new_tail) {
+                           LeafNode *restrict new_tail) {
   const LeafNode *old_tail = new_rrb->tail;
   new_rrb->tail = new_tail;
   if (rrb->cnt <= RRB_BRANCHING) {
@@ -924,7 +924,7 @@ void* rrb_nth(const RRB *rrb, uint32_t index) {
   }
   const uint32_t tail_offset = rrb->cnt - rrb->tail_len;
   if (tail_offset <= index) {
-    return rrb->tail->child[index - tail_offset];
+    return (void*) rrb->tail->child[index - tail_offset];
   }
   else {
     const InternalNode *current = (const InternalNode *) rrb->root;
@@ -937,7 +937,7 @@ void* rrb_nth(const RRB *rrb, uint32_t index) {
         current = sized(current, &index, shift);
       }
     }
-    return ((const LeafNode *)current)->child[index & RRB_MASK];
+    return (void*) ((const LeafNode *)current)->child[index & RRB_MASK];
   }
 }
 
@@ -1084,7 +1084,7 @@ static TreeNode* slice_right_rec(uint32_t *total_shift, const TreeNode *root,
       }
 
       const TreeNode *right_hand_node =
-        slice_right_rec(total_shift, internal_root->child[subidx], idx,
+        slice_right_rec(total_shift, (const TreeNode*) internal_root->child[subidx], idx,
                         subshift, (subidx != 0) | has_left);
       if (subidx == 0) {
         if (has_left) {
@@ -1250,7 +1250,7 @@ static TreeNode* slice_left_rec(uint32_t *total_shift, const TreeNode *root,
       if (has_right) {
         InternalNode *left_hand_parent = internal_node_create(1);
         const InternalNode *internal_left_hand_node = (InternalNode *) left_hand_node;
-        left_hand_parent->child[0] = internal_left_hand_node;
+        left_hand_parent->child[0] = (InternalNode *) internal_left_hand_node;
 
         if (subshift != LEAF_NODE_SHIFT && internal_left_hand_node->size_table != NULL) {
           RRBSizeTable *sliced_table = size_table_create(1);

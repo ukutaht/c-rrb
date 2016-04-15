@@ -467,7 +467,7 @@ uint32_t rrb_memory_usage(const RRB *const *rrbs, uint32_t rrb_count) {
     if (!dot_array_contains(set, (const void *) rrbs[i])) {
       dot_array_add(set, (const void *) rrbs[i]);
       sum += sizeof(RRB) + node_size(set, rrbs[i]->root);
-      sum += node_size(set, rrbs[i]->tail);
+      sum += node_size(set, (const TreeNode*) rrbs[i]->tail);
     }
   }
   return sum;
