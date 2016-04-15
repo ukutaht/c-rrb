@@ -1,6 +1,8 @@
 cmake_minimum_required (VERSION 3.4)
 project (c-rrb)
 
+SET (CMAKE_C_FLAGS "-Wall -Wextra -pedantic -std=c99")
+
 INCLUDE (CheckIncludeFiles)
 check_include_files (gc.h HAVE_GC)
 

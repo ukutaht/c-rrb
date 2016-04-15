@@ -501,7 +501,6 @@ TransientRRB* transient_rrb_pop(TransientRRB *trrb) {
 
 void transient_promote_rightmost_leaf(TransientRRB* trrb) {
   const void* guid = trrb->guid;
-  InternalNode *current = (InternalNode *) trrb->root;
 
   InternalNode *path[RRB_MAX_HEIGHT+1];
   path[0] = (InternalNode *) trrb->root;
