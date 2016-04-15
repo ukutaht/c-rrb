@@ -1,6 +1,1 @@
-*~
-/Makefile
-/Makefile.in
-/CmakeCache.txt
-/CmakeFiles
-/cmake_install.cmake
+/target
