@@ -22,14 +22,17 @@ For an explanation on how this data structure works in detail, read
 http://infoscience.epfl.ch/record/169879/files/RMTrees.pdf and then my thesis:
 http://hypirion.com/thesis
 
+This library, unmodified, depends on CMake and Boehm GC.
 
 
-This library, unmodified, depends on cmake and Boehm GC.
+#### Installing
 
 On OSX (tested with Yosemite), you can install
-cmake and Boehm GC with Homebrew like this:
+CMake and Boehm GC with Homebrew like this:
 
-  brew install boehmgc cmake
+```sh
+$ brew install boehmgc cmake
+```
 
 To build and install the library, run:
 
