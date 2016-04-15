@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+set -e
+
+build_type=${1:-debug}
+mkdir -p target/$build_type
+cd target/$build_type
+
+cmake -DCMAKE_BUILD_TYPE=$build_type ../..
+make
+make test
