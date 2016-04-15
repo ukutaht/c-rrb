@@ -26,8 +26,8 @@
 
 #include <stdint.h>
 
-#define RRB_BITS @RRB_BITS@
-#define RRB_MAX_HEIGHT @RRB_MAX_HEIGHT@
+#define RRB_BITS 5
+#define RRB_MAX_HEIGHT 6
 
 #define RRB_BRANCHING (1 << RRB_BITS)
 #define RRB_MASK (RRB_BRANCHING - 1)
