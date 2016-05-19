@@ -9,9 +9,8 @@ check_include_files (gc.h HAVE_GC)
 include_directories ("${PROJECT_SOURCE_DIR}/src")
 add_library(rrb src/rrb.c)
 
-install(TARGETS rrb
-        ARCHIVE DESTINATION lib
-        LIBRARY DESTINATION lib)
+install(TARGETS rrb DESTINATION lib)
+install (FILES src/rrb.h DESTINATION include/rrb)
 
 enable_testing()
 
